@@ -1,0 +1,20 @@
+﻿Test.Run(new Solution().solution, new TestCase[]
+{
+    new(0, 1),
+    new(1, 2),
+    new(2, 3),
+    new(2, 4),
+    new(3, 5),
+    new(3, 6),
+    new(4, 7),
+    new(4, 8),
+    new(4, 9),
+    new(4, 10),
+    new(8, 20),
+    new(15, 50),
+    new(25, 100),
+    new(168, 1000),
+    new(1229, 10000),
+    new(9592, 100000),
+    new(78498, 1000000),
+});
