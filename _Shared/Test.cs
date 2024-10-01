@@ -39,7 +39,7 @@ public static class Test
                 {
                     success = false;
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine($"[{i + 1}/{testCases.Length}] Failed  ({result} != {testCase.Expect})");
+                    Console.WriteLine($"[{i + 1}/{testCases.Length}] Failed  (result:{result} != expect:{testCase.Expect})");
                 }
             }
             catch (Exception ex)

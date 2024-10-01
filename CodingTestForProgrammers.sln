@@ -37,6 +37,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lv2_삼각달팽이", "Lv2\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lv2_이진변환반복하기", "Lv2\Lv2_이진변환반복하기\Lv2_이진변환반복하기.csproj", "{ABB91B64-A357-4924-8722-642A934F4CE9}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lv2_퍼즐게임챌린지", "Lv2\Lv2_퍼즐게임챌린지\Lv2_퍼즐게임챌린지.csproj", "{3046113A-98F2-4752-96AB-6F93127DADE8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -103,6 +105,10 @@ Global
 		{ABB91B64-A357-4924-8722-642A934F4CE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ABB91B64-A357-4924-8722-642A934F4CE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ABB91B64-A357-4924-8722-642A934F4CE9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3046113A-98F2-4752-96AB-6F93127DADE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3046113A-98F2-4752-96AB-6F93127DADE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3046113A-98F2-4752-96AB-6F93127DADE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3046113A-98F2-4752-96AB-6F93127DADE8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -122,6 +128,7 @@ Global
 		{070A797A-5512-43D6-BAFB-BC564FA76835} = {917DF264-9F7E-4664-BD18-F46256F5C473}
 		{3BDEE8B7-A8B5-4AA1-9380-2F20325E7EC0} = {917DF264-9F7E-4664-BD18-F46256F5C473}
 		{ABB91B64-A357-4924-8722-642A934F4CE9} = {917DF264-9F7E-4664-BD18-F46256F5C473}
+		{3046113A-98F2-4752-96AB-6F93127DADE8} = {917DF264-9F7E-4664-BD18-F46256F5C473}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {90692144-1355-4F79-BB01-36EB7EC71630}
