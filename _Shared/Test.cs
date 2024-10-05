@@ -70,30 +70,33 @@ public static class Test
             return;
         }
 
-        Stopwatch total = Stopwatch.StartNew();
-        Stopwatch proc = new();
-        int cnt = 0;
-        long end = TimeSpan.TicksPerSecond * 5;
-        long elapsed = 0;
-        long alloced = 0;
-        while (total.ElapsedTicks < end)
+        if (!Environment.GetCommandLineArgs().Any(v=>v=="-nobenchmark"))
         {
-            GC.Collect(2);
-            var bgc = GC.GetAllocatedBytesForCurrentThread();
-            proc.Restart();
-            for (int i = 0; i < testCases.Length; i++)
+            Stopwatch total = Stopwatch.StartNew();
+            Stopwatch proc = new();
+            int cnt = 0;
+            long end = TimeSpan.TicksPerSecond * 5;
+            long elapsed = 0;
+            long alloced = 0;
+            while (total.ElapsedTicks < end)
             {
-                method.DynamicInvoke(testCases[i].Params);
-            }
-            proc.Stop();
-            var egc = GC.GetAllocatedBytesForCurrentThread();
+                GC.Collect(2);
+                var bgc = GC.GetAllocatedBytesForCurrentThread();
+                proc.Restart();
+                for (int i = 0; i < testCases.Length; i++)
+                {
+                    method.DynamicInvoke(testCases[i].Params);
+                }
+                proc.Stop();
+                var egc = GC.GetAllocatedBytesForCurrentThread();
 
-            alloced += egc - bgc;
-            elapsed += proc.ElapsedTicks;
-            cnt++;
+                alloced += egc - bgc;
+                elapsed += proc.ElapsedTicks;
+                cnt++;
+            }
+            total.Stop();
+            Console.WriteLine($"Simple Benchmark {cnt} / {(double)elapsed / TimeSpan.TicksPerSecond:f3}s = {(double)elapsed / cnt:f3} cpt  || Alloc: {((double)alloced / cnt):F1}b");
         }
-        total.Stop();
-        Console.WriteLine($"Simple Benchmark {cnt} / {(double)elapsed / TimeSpan.TicksPerSecond :f3}s = {(double)elapsed / cnt:f3} cpt  || Alloc: {((double)alloced/cnt):F1}b");
     }
 
     private static string GetString(object result)

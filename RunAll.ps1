@@ -24,7 +24,7 @@ foreach ($csproj in $csprojFiles) {
 
         if ($exeFile) {
             # exe 파일 실행
-            $process = Start-Process -FilePath $exeFile.FullName -ArgumentList '-nowait' -PassThru -WindowStyle Hidden
+            $process = Start-Process -FilePath $exeFile.FullName -ArgumentList '-nowait','-nobenchmark' -PassThru -WindowStyle Hidden
 			$process.WaitForExit()
 			
             if ($process.ExitCode -eq 0) {
