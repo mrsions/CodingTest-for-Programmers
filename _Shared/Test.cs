@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Text.Encodings.Web;
+using System.Text.Json;
 
 public record TestCase(object Expect, params object[] Params);
 
@@ -39,7 +41,7 @@ public static class Test
                 {
                     success = false;
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine($"[{i + 1}/{testCases.Length}] Failed  (result:{result} != expect:{testCase.Expect})");
+                    Console.WriteLine($"[{i + 1}/{testCases.Length}] Failed  (result:{GetString(result)} != expect:{GetString(testCase.Expect)})");
                 }
             }
             catch (Exception ex)
@@ -64,6 +66,20 @@ public static class Test
                 Console.ReadKey();
             }
             Environment.Exit(1);
+        }
+    }
+
+    private static string GetString(object result)
+    {
+        if (result == null) return null;
+
+        if(result is ICollection)
+        {
+            return JsonSerializer.Serialize(result, new JsonSerializerOptions() { Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping});
+        }
+        else
+        {
+            return result.ToString();
         }
     }
 
