@@ -7,7 +7,10 @@ using System.Reflection;
 using System.Text.Encodings.Web;
 using System.Text.Json;
 
-public record TestCase(object Expect, params object[] Params);
+public record TestCase(object Expect, params object[] Params)
+{
+    internal object instance;
+}
 
 public static class n
 {
@@ -18,11 +21,11 @@ public static class n
 
 public static class Test
 {
-    public static void Run(Delegate method, params TestCase[] testCases)
+    public static void Run(Delegate del, params TestCase[] testCases)
     {
         Console.ForegroundColor = ConsoleColor.White;
         Console.WriteLine("-------------------------------------------------------");
-        Console.WriteLine("Run  : " + method.Method.DeclaringType.Assembly.GetName().Name);
+        Console.WriteLine("Run  : " + del.Method.DeclaringType.Assembly.GetName().Name);
         Console.WriteLine("Case : " + testCases.Length);
 
         bool success = true;
@@ -31,7 +34,8 @@ public static class Test
             TestCase testCase = testCases[i];
             try
             {
-                var result = method.DynamicInvoke(testCase.Params);
+                testCase.instance ??= Activator.CreateInstance(del.Target.GetType());
+                var result = del.Method.Invoke(testCase.instance, testCase.Params);
 
                 if (AnyEquals(result, testCase.Expect))
                 {
@@ -43,6 +47,12 @@ public static class Test
                     success = false;
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine($"[{i + 1}/{testCases.Length}] Failed  (result:{GetString(result)} != expect:{GetString(testCase.Expect)})");
+
+                    if(Debugger.IsAttached)
+                    {
+                        Console.WriteLine("Enter rety");
+                        Console.ReadLine();
+                    }
                 }
             }
             catch (Exception ex)
@@ -85,7 +95,8 @@ public static class Test
                 proc.Restart();
                 for (int i = 0; i < testCases.Length; i++)
                 {
-                    method.DynamicInvoke(testCases[i].Params);
+                    var testCase = testCases[i];
+                    del.Method.Invoke(testCase.instance, testCase.Params);
                 }
                 proc.Stop();
                 var egc = GC.GetAllocatedBytesForCurrentThread();
@@ -95,7 +106,7 @@ public static class Test
                 cnt++;
             }
             total.Stop();
-            Console.WriteLine($"Simple Benchmark {cnt} / {(double)elapsed / TimeSpan.TicksPerSecond:f3}s = {(double)elapsed / cnt:f3} cpt  || Alloc: {((double)alloced / cnt):F1}b");
+            Console.WriteLine($"Simple Benchmark {cnt} / {(double)elapsed / TimeSpan.TicksPerSecond:f3}s = {(double)elapsed  / cnt:f3} cpt  || Alloc: {((double)alloced / cnt):F1}b");
         }
     }
 

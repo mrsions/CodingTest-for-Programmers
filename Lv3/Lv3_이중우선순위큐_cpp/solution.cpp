@@ -1,4 +1,6 @@
-﻿#include <iostream>
+﻿// Simple Benchmark 6653 / 5.000053 = 7515.486246805952 cpt
+
+#include <iostream>
 #include <string>
 #include <vector>
 

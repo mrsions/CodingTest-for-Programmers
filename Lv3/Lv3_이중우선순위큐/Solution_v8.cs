@@ -2,8 +2,8 @@
 /// <improve>9:13~</improve>
 /// <summary>
 /// unsafe 힙메모리로 구현
-/// Simple Benchmark 446607 / 0.620s = 13.875 cpt  || Alloc: 648.0b
 /// Simple Benchmark 8832 / 4.230s = 4789.066 cpt  || Alloc: 712.0b
+/// Simple Benchmark 8742 / 4.193s = 4796.114 cpt  || Alloc: 129.9b
 /// </summary>
 
 using System;
