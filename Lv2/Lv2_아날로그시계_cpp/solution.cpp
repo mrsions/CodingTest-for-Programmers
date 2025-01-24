@@ -1,4 +1,8 @@
-//https://school.programmers.co.kr/learn/courses/30/lessons/250135
+// https://school.programmers.co.kr/learn/courses/30/lessons/250135
+
+
+#include <stdlib.h>
+#include <iostream>
 
 using namespace std;
 
@@ -74,10 +78,6 @@ int solution(int h1, int m1, int s1, int h2, int m2, int s2)
 
     return answer;
 }
-
-
-#include <stdlib.h>
-#include <iostream>
 
 int main()
 {

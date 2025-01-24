@@ -5,7 +5,9 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${fileDirname}/${fileBasenameNoExtension}",
-            "args": ["-std:c++20"],
+            "args": [
+                "-std:c++20"
+            ],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",
             "environment": [],
@@ -18,7 +20,9 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${fileDirname}/${fileBasenameNoExtension}",
-            "args": ["-std:c++20"],
+            "args": [
+                "-std:c++20"
+            ],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",
             "environment": [],
